@@ -26,3 +26,5 @@ python3 with pyperclip module
 
 *****Accessing your passwords*****
 1. Example run for example accounts and password given. 
+
+![Example Image](https://raw.githubusercontent.com/vaithak/Password-Locker/master/example.png)
