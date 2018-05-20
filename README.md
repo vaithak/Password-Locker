@@ -10,11 +10,7 @@ password to your clipboard.The passwords are stored encrypted by 256-bit AES in 
 
 Make sure you have python3 installed then run this command in terminal :-
 ```
-$ pip install pyperclip
-$ pip install configparser
-$ pip install pycrypto
-$ pip install getpass
-$ pip install hashlib
+$ pip install pyperclip configparser pycrypto getpass hashlib
 ```
 
 ## Usage:  
