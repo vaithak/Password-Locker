@@ -14,10 +14,30 @@ pip install pyperclip,configparser,pycrypto,getpass,hashlib
 
 **Usage: -**  
 
-*****Adding your account and password*****
-1. Open the script and edit the passwords dicctionary by replacing your accounts and password.
-2. You can add space separated tags for each account as given inside the script as an example,  
-   so that even if you type the related tag of your account then it copies the account's password.
+Run this command for first time
+```
+$ python3 pass_lock.py
+```
+
+To add new accounts
+```
+$ python3 pass_lock.py --add [account_name]
+```
+
+To copy password of account stored
+```
+$ python3 pass_lock.py --get [account_name]
+```
+
+To list all accounts stored
+```
+$ python3 pass_lock.py -l
+```
+
+For help menu
+```
+$ python3 pass_lock.py -h
+```
 
 
 *****Add security to the script*****
