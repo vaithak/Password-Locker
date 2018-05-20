@@ -1,5 +1,5 @@
 import re
-import sys
+import sys,os,inspect
 import pyperclip
 import hashlib
 import getpass
@@ -39,7 +39,8 @@ def adduser(username):
     config['DATA'][username] = str(encrypt(getpass.getpass(prompt='Password for ' + username + ':')), 'utf-8')
 
     # writing the changes back into the file
-    with open('data.ini', 'w') as configfile:    # save
+    filename = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))
+    with open(filename + '/data.ini', 'w') as configfile:    # save
         config.write(configfile)
 
     # Success message
@@ -84,7 +85,8 @@ def hashed_pass(password):
 
 
 def main():
-    config.read('data.ini')
+    filename = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))
+    config.read(filename + '/data.ini')
 
     if int(config['SETUP']['first_time']) == 1:
         setup.setup()
