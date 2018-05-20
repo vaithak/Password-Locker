@@ -6,15 +6,19 @@ A command line password locker made in python. When you run this script from ter
 your account stored or related tags as a command line argument, then the script copies the account's  
 password to your clipboard.The passwords are stored encrypted by 256-bit AES in data.ini file.
 
-**Requirements**
+**Requirements**  
 Make sure you have python3 installed then run this command in terminal :-
 ```
-pip install pyperclip,configparser,pycrypto,getpass,hashlib
+$ pip install pyperclip
+$ pip install configparser
+$ pip install pycrypto
+$ pip install getpass
+$ pip install hashlib
 ```
 
 **Usage: -**  
 
-Run this command for first time
+Run this command for first time to add new password for this script.
 ```
 $ python3 pass_lock.py
 ```
