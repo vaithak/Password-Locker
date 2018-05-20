@@ -108,16 +108,16 @@ def main():
         args = parser.parse_args()
 
         # calling functions
-        if args.list:
-            listall()
-        elif args.add:
+        if args.add:
             adduser(args.add)
         elif args.get:
             retrieve(args.get)
+        elif args.list:
+            listall()
 
     else:
         print("Wrong password!!")
 
 
 if __name__ == '__main__':
-    main() 
+    main()
