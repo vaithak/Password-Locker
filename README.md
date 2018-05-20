@@ -4,11 +4,12 @@ This script is for you if you forget your passwords frequently.
 
 A command line password locker made in python. When you run this script from terminal and passing  
 your account stored or related tags as a command line argument, then the script copies the account's  
-password to your clipboard.
+password to your clipboard.The passwords are stored encrypted by 256-bit AES in data.ini file.
 
 **Requirements**
+Make sure you have python3 installed then run this command in terminal :-
 ```
-python3 with pyperclip module
+pip install pyperclip,configparser,pycrypto,getpass,hashlib
 ```
 
 **Usage: -**  
@@ -20,11 +21,9 @@ python3 with pyperclip module
 
 
 *****Add security to the script*****
-1. Run ```$chown root pass_block.sh``` on terminal so that root user becomes the owner of this script,  
-   to protect your passwords. 
-2. Run ```chmod 700 pass_block.sh``` so that only the owner=>root can access this script in any form.
+1. Run ```chmod 700 data.ini``` so that only the owner can access the data file.
 
 *****Accessing your passwords*****
-1. Example run for example accounts and password given. 
+1. Example run for example accounts and password given.
 
 ![Example Image](https://raw.githubusercontent.com/vaithak/Password-Locker/master/example.png)
