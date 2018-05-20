@@ -18,7 +18,7 @@ $ pip install hashlib
 
 **Usage: -**  
 
-Run this command for first time
+Run this command for first time to add new password for this script.
 ```
 $ python3 pass_lock.py
 ```
