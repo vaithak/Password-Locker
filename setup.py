@@ -3,6 +3,7 @@ import hashlib
 import configparser
 import base64
 import re
+import os,inspect
 from Crypto.Cipher import AES
 
 # configuration settings
@@ -28,7 +29,8 @@ def main():
     print("Setup will be done in pass_lock file only")
 
 def setup():
-    config.read('data.ini')
+    filename = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))
+    config.read(filename + '/data.ini')
     if int(config['SETUP']['first_time']) == 1:
         print('Running the manager for first time')
         print('Please enter your password for encrypting and verification ( you will prompted for the password every time you run the main script)')
@@ -43,7 +45,8 @@ def setup():
             config['SETUP']['check'] = str(encrypt(config['SETUP']['check'],hashed_pw),'utf-8')
 
             # writing the changes back into the file
-            with open('data.ini', 'w') as configfile:    # save
+            filename = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))
+            with open(filename + '/data.ini', 'w') as configfile:    # save
                 config.write(configfile)
 
             # succesful status
