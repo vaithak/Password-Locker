@@ -10,7 +10,7 @@ import argparse
 from Crypto.Cipher import AES
 
 # configurations
-hashed_pwd = ''
+hashed_pwd = b''
 config = configparser.ConfigParser()
 
 # padding for encrypting
@@ -24,7 +24,7 @@ def encrypt(raw):
     private_key = hashed_pwd
     raw = pad(raw)
     cipher = AES.new(private_key, AES.MODE_ECB)
-    return base64.b64encode(cipher.encrypt(raw))
+    return base64.b64encode(cipher.encrypt(bytes(raw, 'utf-8')))
 
 
 def decrypt(enc):
@@ -95,30 +95,35 @@ def main():
     # authenticating the user
     global hashed_pwd
     hashed_pwd = hashed_pass(getpass.getpass(prompt='Password for script: '))
-    if unpad(bytes.decode(decrypt(config['SETUP']['check']))) == "dictionary_check":
+    try:
+        if unpad(bytes.decode(decrypt(config['SETUP']['check']))) == "dictionary_check":
 
-        # if less than one argument
-        if len(sys.argv) <= 1:
-            sys.argv.append('--help')
+            # if less than one argument
+            if len(sys.argv) <= 1:
+                sys.argv.append('--help')
 
-        # Main script
-        parser = argparse.ArgumentParser(description='A Command line password manager')
-        parser.set_defaults(func=lambda x: parser.print_usage())
-        parser.add_argument('-a', '--add', nargs='?',action='store', help='Add a new account. Just provide the unique account-name along with it')
-        parser.add_argument('-g', '--get', nargs='?',action='store', help='Copies the password of username passed as argument to your clipboard')
-        parser.add_argument('-l', '--list',nargs='?',default='all',const='all', help='List usernames of accounts already added')
-        args = parser.parse_args()
+            # Main script
+            parser = argparse.ArgumentParser(description='A Command line password manager')
+            parser.set_defaults(func=lambda x: parser.print_usage())
+            parser.add_argument('-a', '--add', nargs='?',action='store', help='Add a new account. Just provide the unique account-name along with it')
+            parser.add_argument('-g', '--get', nargs='?',action='store', help='Copies the password of username passed as argument to your clipboard')
+            parser.add_argument('-l', '--list',nargs='?',default='all',const='all', help='List usernames of accounts already added')
+            args = parser.parse_args()
 
-        # calling functions
-        if args.add:
-            adduser(args.add)
-        elif args.get:
-            retrieve(args.get)
-        elif args.list:
-            listall()
+            # calling functions
+            if args.add:
+                adduser(args.add)
+            elif args.get:
+                retrieve(args.get)
+            elif args.list:
+                listall()
 
-    else:
+        else:
+            print("Wrong password!!")
+    except UnicodeDecodeError:
         print("Wrong password!!")
+    except:
+        print("Some error ocurred")
 
 
 if __name__ == '__main__':
