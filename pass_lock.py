@@ -59,6 +59,7 @@ def retrieve(username):
             pyperclip.copy(unpad(bytes.decode(decrypt(config['DATA'][check]))))
             print('Password for ' + check + ' copied to clipboard.')
             flag = 1
+            break
 
     # If account not found
     if flag == 0:
